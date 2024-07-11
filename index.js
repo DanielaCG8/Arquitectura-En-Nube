@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.send('¡Hola, mundo!');
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`La aplicación está corriendo en el puerto ${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
